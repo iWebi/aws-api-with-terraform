@@ -1,0 +1,8 @@
+js/
+.idea/
+aws-api-with-terraform.iml
+node_modules/
+
+terraform.tfstate*
+.terraform
+terraform/.terraform.lock.hcl
