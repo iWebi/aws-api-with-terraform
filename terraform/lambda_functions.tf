@@ -42,3 +42,16 @@ module "updateAccountLambda" {
   role_arn = local.role_arn
   depends_on = [aws_lambda_layer_version.nodejs]
 }
+
+
+module "deleteAccountLambda" {
+  source = "./modules/lambda"
+
+  function_name = "deleteAccount"
+  lambda_dir    = local.lambda_dir
+  layers        = [local.layer]
+  name          = "deleteAccount"
+  source_arn    = local.source_arn
+  role_arn = local.role_arn
+  depends_on = [aws_lambda_layer_version.nodejs]
+}

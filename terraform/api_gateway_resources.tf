@@ -60,3 +60,15 @@ module "update-account-api" {
   authorizer_id = ""
   rest_api_id   = local.rest_api_id
 }
+
+module "delete-account-api" {
+  source = "./modules/api-gateway-proxy"
+
+  resource_id = aws_api_gateway_resource.accountId.id
+  http_method = "DELETE"
+  invoke_arn = module.deleteAccountLambda.invoke_arn
+
+
+  authorizer_id = ""
+  rest_api_id   = local.rest_api_id
+}
