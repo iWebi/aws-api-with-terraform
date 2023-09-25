@@ -6,3 +6,4 @@ node_modules/
 terraform.tfstate*
 .terraform
 terraform/.terraform.lock.hcl
+coverage/
