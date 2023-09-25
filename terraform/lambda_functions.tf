@@ -29,3 +29,16 @@ module "getAccountLambda" {
   role_arn = local.role_arn
   depends_on = [aws_lambda_layer_version.nodejs]
 }
+
+
+module "updateAccountLambda" {
+  source = "./modules/lambda"
+
+  function_name = "updateAccount"
+  lambda_dir    = local.lambda_dir
+  layers        = [local.layer]
+  name          = "updateAccount"
+  source_arn    = local.source_arn
+  role_arn = local.role_arn
+  depends_on = [aws_lambda_layer_version.nodejs]
+}

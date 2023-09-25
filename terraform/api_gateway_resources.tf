@@ -48,3 +48,15 @@ module "get-account-api" {
   authorizer_id = ""
   rest_api_id   = local.rest_api_id
 }
+
+module "update-account-api" {
+  source = "./modules/api-gateway-proxy"
+
+  resource_id = aws_api_gateway_resource.accountId.id
+  http_method = "PUT"
+  invoke_arn = module.updateAccountLambda.invoke_arn
+
+
+  authorizer_id = ""
+  rest_api_id   = local.rest_api_id
+}
