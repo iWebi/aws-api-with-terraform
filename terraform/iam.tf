@@ -1,5 +1,5 @@
 
-resource "aws_iam_role" "lambda-execution" {
+resource "aws_iam_role" "lambda_execution" {
   name = "lambda-execution"
 
   assume_role_policy = <<EOF
@@ -18,7 +18,7 @@ resource "aws_iam_role" "lambda-execution" {
 EOF
 }
 
-resource "aws_iam_policy" "myapp-lambda-dynamodb-policy" {
+resource "aws_iam_policy" "myapp_lambda_dynamodb" {
   name = "LambdaDynamoDB"
 
   policy = <<EOF
@@ -39,7 +39,7 @@ resource "aws_iam_policy" "myapp-lambda-dynamodb-policy" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "lambda-dynamodb-attachment" {
-  role       = aws_iam_role.lambda-execution.name
-  policy_arn = aws_iam_policy.myapp-lambda-dynamodb-policy.arn
+resource "aws_iam_role_policy_attachment" "lambda_dynamodb" {
+  role       = aws_iam_role.lambda_execution.name
+  policy_arn = aws_iam_policy.myapp_lambda_dynamodb.arn
 }

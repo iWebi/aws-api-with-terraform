@@ -73,7 +73,7 @@ resource "aws_api_gateway_stage" "demo_api_gateway_stage" {
   xray_tracing_enabled = true
 
   access_log_settings {
-    destination_arn = aws_cloudwatch_log_group.demo_api_access_loggroup.arn
+    destination_arn = aws_cloudwatch_log_group.demo_api_access_log_group.arn
     format = file("${path.module}/access_log_settings_format.json")
   }
 }
@@ -95,7 +95,7 @@ resource "aws_api_gateway_method_settings" "demo_api_gateway_settings" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "demo_api_access_loggroup" {
+resource "aws_cloudwatch_log_group" "demo_api_access_log_group" {
   name              = "demo_api_gateway_access_log"
   retention_in_days = 14
 }

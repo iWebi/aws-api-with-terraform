@@ -1,7 +1,7 @@
 locals {
   lambda_dir = "/tmp/api"
   layer = aws_lambda_layer_version.nodejs.arn
-  role_arn = aws_iam_role.lambda-execution.arn
+  role_arn = aws_iam_role.lambda_execution.arn
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission#source_arn
   source_arn = "${aws_api_gateway_rest_api.demo_api_gateway.execution_arn}/*/*"
 }

@@ -26,7 +26,7 @@ resource "aws_api_gateway_resource" "accountId" {
   path_part   = "{accountId}"
 }
 
-module "create-account-api" {
+module "createAccountApi" {
   source = "./modules/api-gateway-proxy"
   resource_id = aws_api_gateway_resource.account.id
   http_method = "POST"
@@ -37,7 +37,7 @@ module "create-account-api" {
   rest_api_id   = local.rest_api_id
 }
 
-module "get-account-api" {
+module "getAccountApi" {
   source = "./modules/api-gateway-proxy"
 
   resource_id = aws_api_gateway_resource.accountId.id
@@ -49,7 +49,7 @@ module "get-account-api" {
   rest_api_id   = local.rest_api_id
 }
 
-module "update-account-api" {
+module "updateAccountApi" {
   source = "./modules/api-gateway-proxy"
 
   resource_id = aws_api_gateway_resource.accountId.id
@@ -61,7 +61,7 @@ module "update-account-api" {
   rest_api_id   = local.rest_api_id
 }
 
-module "delete-account-api" {
+module "deleteAccountApi" {
   source = "./modules/api-gateway-proxy"
 
   resource_id = aws_api_gateway_resource.accountId.id
