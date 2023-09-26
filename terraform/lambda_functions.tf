@@ -55,3 +55,15 @@ module "deleteAccountLambda" {
   role_arn = local.role_arn
   depends_on = [aws_lambda_layer_version.nodejs]
 }
+
+module "authorizer" {
+  source = "./modules/lambda"
+
+  function_name = "authorizer"
+  lambda_dir    = local.lambda_dir
+  layers        = [local.layer]
+  name          = "authorizer"
+  source_arn    = local.source_arn
+  role_arn = local.role_arn
+  depends_on = [aws_lambda_layer_version.nodejs]
+}

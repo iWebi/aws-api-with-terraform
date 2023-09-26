@@ -6,7 +6,7 @@ import {
 } from "aws-lambda";
 
 export async function authorize(event: APIGatewayEvent) {
-  const authToken = findHeader("Authorization", event.headers);
+  const authToken = findHeader("x-auth-token", event.headers);
   // TODO: add custom auth logic here
   // dummy logic for demo purpose
   if (authToken === "_t_o_k_e_n_") {
@@ -36,9 +36,12 @@ export function generatePolicy(
     baseARN = `arn:aws:execute-api:${process.env.AWS_REGION}:random-account-id:random-api-id/${requestContext.stage}`;
   }
 
+  // Allow all apis access for the valid authorization token for demo purpose
+  // This can be fine grained depending on the user's identity roles
   const resources: string[] = [`${baseARN}/*/v*/*`];
 
   return {
+    // This should be successfully authenticated user name or user id
     principalId: "fooUser",
     policyDocument: {
       Version: "2012-10-17",

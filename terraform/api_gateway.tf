@@ -53,6 +53,22 @@ resource "aws_api_gateway_rest_api" "demo_api_gateway" {
   description = "Demo API using Terraform"
 }
 
+resource "aws_api_gateway_authorizer" "authorizer" {
+  name                   = "Authorizer"
+  rest_api_id            = aws_api_gateway_rest_api.demo_api_gateway.id
+  authorizer_uri         = module.authorizer.invoke_arn
+  type                   = "REQUEST"
+  identity_source        = "method.request.header.x-auth-token"
+  authorizer_result_ttl_in_seconds = "300"
+}
+
+resource "aws_api_gateway_request_validator" "authorizer" {
+  name = aws_api_gateway_authorizer.authorizer.name
+  rest_api_id = aws_api_gateway_rest_api.demo_api_gateway.id
+  validate_request_body = false
+  validate_request_parameters = true
+}
+
 
 resource "aws_api_gateway_deployment" "demo_api_gateway" {
   rest_api_id = aws_api_gateway_rest_api.demo_api_gateway.id

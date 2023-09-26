@@ -1,5 +1,6 @@
 locals {
   rest_api_id = aws_api_gateway_rest_api.demo_api_gateway.id
+  authorizer_id = aws_api_gateway_authorizer.authorizer.id
 }
 # /v1.0/{tenant}/account related resources
 resource "aws_api_gateway_resource" "root" {
@@ -33,7 +34,7 @@ module "createAccountApi" {
   invoke_arn = module.addAccountLambda.invoke_arn
 
 
-  authorizer_id = ""
+  authorizer_id = local.authorizer_id
   rest_api_id   = local.rest_api_id
 }
 
@@ -45,7 +46,7 @@ module "getAccountApi" {
   invoke_arn = module.getAccountLambda.invoke_arn
 
 
-  authorizer_id = ""
+  authorizer_id = local.authorizer_id
   rest_api_id   = local.rest_api_id
 }
 
@@ -57,7 +58,7 @@ module "updateAccountApi" {
   invoke_arn = module.updateAccountLambda.invoke_arn
 
 
-  authorizer_id = ""
+  authorizer_id = local.authorizer_id
   rest_api_id   = local.rest_api_id
 }
 
@@ -69,6 +70,6 @@ module "deleteAccountApi" {
   invoke_arn = module.deleteAccountLambda.invoke_arn
 
 
-  authorizer_id = ""
+  authorizer_id = local.authorizer_id
   rest_api_id   = local.rest_api_id
 }

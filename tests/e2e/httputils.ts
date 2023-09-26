@@ -31,7 +31,8 @@ function defaultHeaders(): AxiosRequestConfig {
         // TODO: add Authorization
         headers: {
             "Content-Type": "application/json",
-            Accept: "application/json"
+            Accept: "application/json",
+            "x-auth-token": "_t_o_k_e_n_"
         },
         validateStatus: () => true
     }
