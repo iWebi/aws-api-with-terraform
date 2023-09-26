@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`addAccount fails for invalid JSON request data 1`] = `
+{
+  "body": "{"body":"Invalid JSON payload","statusCode":400,"statusType":"Bad Request"}",
+  "headers": {
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json",
+  },
+  "statusCode": 400,
+}
+`;
+
+exports[`addAccount fails for missing mandatory fields in request data 1`] = `
+{
+  "body": "{"body":"Missing mandatory field(s): name for account creation","statusCode":400,"statusType":"Bad Request"}",
+  "headers": {
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json",
+  },
+  "statusCode": 400,
+}
+`;
